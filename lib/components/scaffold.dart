@@ -6,6 +6,7 @@ import 'package:search_cep/config/size_config.dart';
 Scaffold getScaffold({
   required String titlePage,
   required Widget body,
+  Widget? bottom,
 }) {
   return Scaffold(
     appBar: AppBar(
@@ -18,5 +19,6 @@ Scaffold getScaffold({
       centerTitle: true,
     ),
     body: body,
+    bottomNavigationBar: bottom,
   );
 }
