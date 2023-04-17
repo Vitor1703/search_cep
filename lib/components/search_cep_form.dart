@@ -12,7 +12,7 @@ Widget getSearchCepForm({required TextEditingController controller}) {
       decoration: const InputDecoration(
         hintText: '00000-000',
         border: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        contentPadding: EdgeInsets.symmetric(horizontal: SizeConfig.spacingBig, vertical: SizeConfig.spacingDefault),
       ),
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: SizeConfig.fontsizeExtraBig, fontWeight: FontWeight.bold, color: ColorConfig.black),

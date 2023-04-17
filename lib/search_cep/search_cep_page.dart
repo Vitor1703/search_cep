@@ -4,10 +4,12 @@ import 'package:search_cep/components/container.dart';
 import 'package:search_cep/components/elevated_button.dart';
 import 'package:search_cep/components/scaffold.dart';
 import 'package:search_cep/components/search_cep_form.dart';
+import 'package:search_cep/components/spacing.dart';
 import 'package:search_cep/components/text.dart';
 import 'package:search_cep/config/color_config.dart';
 import 'package:search_cep/config/icon_config.dart';
 import 'package:search_cep/config/size_config.dart';
+import 'package:search_cep/config/text_config.dart';
 import 'package:search_cep/function/number.dart';
 import 'package:search_cep/search_cep/search_cep_bloc.dart';
 import 'package:search_cep/search_cep/search_cep_event.dart';
@@ -35,10 +37,8 @@ class _SearchCepPageState extends State<SearchCepPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(IconConfig.search, size: 50, color: ColorConfig.white),
-          const SizedBox(width: 20),
-          Expanded(
-            child: getText(text: 'Por favor, insira seu CEP para que possamos realizar a busca.', color: ColorConfig.white),
-          ),
+          getSpacingHorizontal(spacing: SizeConfig.spacingExtraBig),
+          Expanded(child: getText(text: TextConfig.mensagemBuscarCep, color: ColorConfig.white)),
         ],
       ),
     );
@@ -47,20 +47,18 @@ class _SearchCepPageState extends State<SearchCepPage> {
   void _buscar() {
     if (_formKey.currentState!.validate()) {
       _searchCepBloc.add(SearchCepLoadEvent(cep: getJustNumbers(_searchCepController.text)));
-    } else {
-      print('Verifique se os dados inseridos estão corretos');
     }
   }
 
   Widget _getColumnValue({required String title, required String value}) {
     return getContainer(
-      margin: const EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(bottom: SizeConfig.spacingSmall),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           getText(text: title, bold: true),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: SizeConfig.spacingSmall),
             child: getText(text: value),
           ),
         ],
@@ -72,11 +70,11 @@ class _SearchCepPageState extends State<SearchCepPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _getColumnValue(title: 'CEP', value: searchCepModel.cep),
-        _getColumnValue(title: 'Logradouro', value: searchCepModel.logradouro),
-        _getColumnValue(title: 'Bairro', value: searchCepModel.bairro),
-        _getColumnValue(title: 'Localidade', value: searchCepModel.localidade),
-        _getColumnValue(title: 'UF', value: searchCepModel.uf),
+        _getColumnValue(title: TextConfig.cep, value: searchCepModel.cep),
+        _getColumnValue(title: TextConfig.logradouro, value: searchCepModel.logradouro),
+        _getColumnValue(title: TextConfig.bairro, value: searchCepModel.bairro),
+        _getColumnValue(title: TextConfig.localidade, value: searchCepModel.localidade),
+        _getColumnValue(title: TextConfig.uf, value: searchCepModel.uf),
       ],
     );
   }
@@ -111,11 +109,11 @@ class _SearchCepPageState extends State<SearchCepPage> {
       padding: const EdgeInsets.all(SizeConfig.spacingDefault),
       children: [
         getWarningSearch(),
-        const SizedBox(height: 10),
+        getSpacingVertical(),
         _form(),
-        const SizedBox(height: 10),
+        getSpacingVertical(),
         const Divider(thickness: 1),
-        const SizedBox(height: 10),
+        getSpacingVertical(),
         _builderInfoCep(),
       ],
     );
@@ -132,14 +130,14 @@ class _SearchCepPageState extends State<SearchCepPage> {
             isLoading: state.runtimeType == SearchCepLoadingState,
           ),
         );
-      }
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return getScaffold(
-      titlePage: 'Buscar CEP',
+      titlePage: TextConfig.buscarCep,
       body: _body(),
       bottom: _getButtonBuscar(),
     );

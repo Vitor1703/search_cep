@@ -6,5 +6,4 @@ class ColorConfig {
   static Color containerSearchCep = Colors.black87;
   static Color lightGrey = Colors.grey.shade200;
   static Color white = Colors.white;
-  static const Color grey = Colors.grey;
 }

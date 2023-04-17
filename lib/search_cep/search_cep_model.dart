@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:search_cep/config/text_config.dart';
+
 class SearchCepModel {
   String cep;
   String logradouro;
@@ -17,11 +19,11 @@ class SearchCepModel {
 
   factory SearchCepModel.empty() {
     return SearchCepModel(
-      cep: '',
-      logradouro: '',
-      bairro: '',
-      localidade: '',
-      uf: '',
+      cep: TextConfig.vazio,
+      logradouro: TextConfig.vazio,
+      bairro: TextConfig.vazio,
+      localidade: TextConfig.vazio,
+      uf: TextConfig.vazio,
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:search_cep/components/loading.dart';
 import 'package:search_cep/components/text.dart';
 import 'package:search_cep/config/size_config.dart';
+import 'package:search_cep/config/text_config.dart';
 
 Widget getButtonSearchCep({required void Function() onPressed, bool? isLoading}) {
   return Builder(
@@ -11,7 +12,7 @@ Widget getButtonSearchCep({required void Function() onPressed, bool? isLoading})
         minimumSize: Size(SizeConfig.maxWidthPage(context), 50),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(SizeConfig.radiusDefault)),
       ),
-      child: isLoading ?? false ? getLoading() : getText(text: 'Buscar', bold: true, fontSize: SizeConfig.fontsizeBig),
+      child: isLoading ?? false ? getLoading() : getText(text: TextConfig.buscar, bold: true, fontSize: SizeConfig.fontsizeBig),
     ),
   );
 }
