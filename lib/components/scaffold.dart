@@ -19,6 +19,7 @@ Scaffold getScaffold({
       centerTitle: true,
     ),
     body: body,
-    bottomNavigationBar: bottom,
+    floatingActionButton: bottom,
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
   );
 }

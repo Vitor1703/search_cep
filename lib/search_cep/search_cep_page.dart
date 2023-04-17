@@ -45,17 +45,26 @@ class _SearchCepPageState extends State<SearchCepPage> {
   }
 
   void _buscar() {
-    _searchCepBloc.add(SearchCepLoadEvent(cep: getJustNumbers(_searchCepController.text)));
+    if (_formKey.currentState!.validate()) {
+      _searchCepBloc.add(SearchCepLoadEvent(cep: getJustNumbers(_searchCepController.text)));
+    } else {
+      print('Verifique se os dados inseridos estão corretos');
+    }
   }
 
   Widget _getColumnValue({required String title, required String value}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        getText(text: title, bold: true),
-        const SizedBox(height: 5),
-        getText(text: value),
-      ],
+    return getContainer(
+      margin: const EdgeInsets.only(bottom: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          getText(text: title, bold: true),
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: getText(text: value),
+          ),
+        ],
+      ),
     );
   }
 
@@ -76,7 +85,7 @@ class _SearchCepPageState extends State<SearchCepPage> {
     return BlocBuilder<SearchCepBloc, SearchCepState>(
       bloc: _searchCepBloc,
       builder: (context, state) {
-        switch(state.runtimeType) {
+        switch (state.runtimeType) {
           case SearchCepSuccessState:
             return _getInfoCep(state.searchCepModel);
 
@@ -105,15 +114,25 @@ class _SearchCepPageState extends State<SearchCepPage> {
         const SizedBox(height: 10),
         _form(),
         const SizedBox(height: 10),
+        const Divider(thickness: 1),
+        const SizedBox(height: 10),
         _builderInfoCep(),
       ],
     );
   }
 
   Widget _getButtonBuscar() {
-    return Padding(
-      padding: const EdgeInsets.all(SizeConfig.spacingDefault),
-      child: getButtonSearchCep(onPressed: () => _buscar()),
+    return BlocBuilder(
+      bloc: _searchCepBloc,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(SizeConfig.spacingDefault),
+          child: getButtonSearchCep(
+            onPressed: () => _buscar(),
+            isLoading: state.runtimeType == SearchCepLoadingState,
+          ),
+        );
+      }
     );
   }
 
@@ -124,5 +143,13 @@ class _SearchCepPageState extends State<SearchCepPage> {
       body: _body(),
       bottom: _getButtonBuscar(),
     );
+  }
+
+  @override
+  void dispose() {
+    _searchCepBloc.close();
+    _searchCepController.dispose();
+
+    super.dispose();
   }
 }

@@ -6,6 +6,7 @@ import '../config/color_config.dart';
 Widget getContainer({
   double? width,
   double? height,
+  EdgeInsetsGeometry? margin,
   Color? backgroundColor,
   Widget? child,
 }) {
@@ -14,6 +15,7 @@ Widget getContainer({
       width: width ?? SizeConfig.maxWidthPage(context),
       height: height,
       padding: const EdgeInsets.all(SizeConfig.spacingDefault),
+      margin: margin,
       decoration: BoxDecoration(
         color: backgroundColor ?? ColorConfig.lightGrey,
         borderRadius: BorderRadius.circular(SizeConfig.radiusDefault),
