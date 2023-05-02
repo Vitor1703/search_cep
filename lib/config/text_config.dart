@@ -8,4 +8,5 @@ class TextConfig {
   static const String localidade = 'Localidade';
   static const String uf = 'UF';
   static const String buscar = 'Buscar';
+  static const String cepInvalido = 'CEP inválido';
 }

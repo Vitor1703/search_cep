@@ -46,7 +46,9 @@ class _SearchCepPageState extends State<SearchCepPage> {
 
   void _buscar() {
     if (_formKey.currentState!.validate()) {
-      _searchCepBloc.add(SearchCepLoadEvent(cep: getJustNumbers(_searchCepController.text)));
+      if(_searchCepBloc.state.searchCepModel.cep != _searchCepController.text) {
+        _searchCepBloc.add(SearchCepLoadEvent(cep: getJustNumbers(_searchCepController.text)));
+      }
     }
   }
 

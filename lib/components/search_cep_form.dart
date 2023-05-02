@@ -3,6 +3,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:search_cep/components/container.dart';
 import 'package:search_cep/config/color_config.dart';
 import 'package:search_cep/config/size_config.dart';
+import 'package:search_cep/config/text_config.dart';
+import 'package:search_cep/function/cep_validator.dart';
 
 Widget getSearchCepForm({required TextEditingController controller}) {
   return getContainer(
@@ -17,7 +19,7 @@ Widget getSearchCepForm({required TextEditingController controller}) {
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: SizeConfig.fontsizeExtraBig, fontWeight: FontWeight.bold, color: ColorConfig.black),
       inputFormatters: [MaskTextInputFormatter(mask: "#####-###")],
-      validator: (value) {},
+      validator: (value) => cepValidator(value ?? TextConfig.vazio),
     ),
   );
 }
