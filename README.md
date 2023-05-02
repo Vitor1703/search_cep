@@ -7,3 +7,6 @@ Ao abrir o aplicativo, o usuário é apresentado com uma tela de entrada onde po
 Após receber a resposta da API, o aplicativo utiliza o Flutter_bloc para gerenciar o estado da aplicação e atualizar a interface do usuário com os dados retornados pela API, incluindo o logradouro, bairro, cidade e estado correspondentes ao CEP inserido.
 
 O projeto é implementado seguindo as diretrizes do Clean Code para garantir um código limpo, organizado e fácil de manter. Isso inclui a separação clara de responsabilidades em diferentes classes e métodos, bem como a utilização de boas práticas de nomenclatura, documentação e estruturação de código.
+
+![IMG1](./assets/img_page_no_data.png)
+![IMG2](./assets/img_page_with_data.png)
